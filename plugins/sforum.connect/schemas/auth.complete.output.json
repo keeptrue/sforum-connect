@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["providerSubject"],
+  "properties": {
+    "providerSubject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "description": "Stable remote subject from the SForum site userinfo endpoint (sub, or its numeric id as a decimal string). The Host computes the keyed HMAC digest; the plugin must not emit a digest."
+    },
+    "usernameHint": { "type": "string", "maxLength": 64 },
+    "displayName": { "type": "string", "maxLength": 200 },
+    "emailHint": { "type": "string", "maxLength": 320 },
+    "emailVerified": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

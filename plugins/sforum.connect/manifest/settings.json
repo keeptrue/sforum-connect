@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "ui": {
+    "mode": "schema",
+    "layout": "tabs",
+    "tabs": [
+      {
+        "id": "connection",
+        "label": { "zh-CN": "站点与凭证", "en-US": "Site & credentials" },
+        "groups": ["credentials"]
+      }
+    ],
+    "groups": [
+      {
+        "id": "credentials",
+        "label": { "zh-CN": "OAuth2 客户端", "en-US": "OAuth2 client" },
+        "columns": 1
+      }
+    ],
+    "callouts": [
+      {
+        "id": "sforum-connect-setup",
+        "tone": "info",
+        "title": {
+          "zh-CN": "在 SForum 站点创建 OAuth 应用",
+          "en-US": "Create an OAuth app on the SForum site"
+        },
+        "body": {
+          "zh-CN": "1. 用浏览器打开站点根地址（默认 https://bbs.dalao.me），登录后进入「设置 → OAuth 应用」，点「新建应用」。\n2. 应用名填便于识别的名称，例如「我的社区登录」。\n3. 把本页上方显示的回调 URL 原样粘贴到回调地址，然后保存。回调必须逐字一致：协议、端口、路径都不能差。\n4. 保存后复制 client_id 与 client_secret，填入下方并保存。留空 client_secret 表示保留已保存的密钥。\n5. 回到「登录方式」运行探测，再按需开启登录、注册和账号绑定。插件启用本身不会公开登录按钮。\n\nscope 不需要在这里配置：授权请求不发送 scope，站点会按应用登记的权限范围授权。想让注册表单预填邮箱，请在站点上给应用勾选 email。",
+          "en-US": "1. Open the site root in a browser (default https://bbs.dalao.me), sign in, then go to Settings → OAuth apps and create an app.\n2. Use a recognizable name, for example \"My community login\".\n3. Paste the callback URL shown above exactly into the redirect URI field and save. It must match byte for byte: scheme, port, and path.\n4. Copy the client_id and client_secret into the fields below and save. Leaving client_secret blank keeps the stored secret.\n5. Return to Login methods, run the probe, then enable login, registration, and account linking as needed. Enabling the plugin alone does not expose a login button.\n\nScope is not configured here: the authorize request sends no scope, so the site grants the app's registered scopes. To prefill email at registration, tick email for the app on the site."
+        },
+        "linkLabel": {
+          "zh-CN": "打开站点的 OAuth 应用页",
+          "en-US": "Open the site's OAuth apps"
+        },
+        "linkUrl": "https://bbs.dalao.me/settings/oauth-apps",
+        "tab": "connection"
+      }
+    ]
+  },
+  "fields": [
+    {
+      "key": "base_url",
+      "label": { "zh-CN": "站点根地址", "en-US": "Site base URL" },
+      "description": {
+        "zh-CN": "SForum 站点根地址，默认 https://bbs.dalao.me。可带路径前缀（例如 https://example.com/forum）；末尾斜杠与误粘贴的 /api/oauth 会自动去掉。非 loopback 地址必须使用 https。",
+        "en-US": "Root URL of the SForum site, default https://bbs.dalao.me. A path prefix is allowed (for example https://example.com/forum); trailing slashes and an accidentally pasted /api/oauth are removed. Non-loopback hosts must use https."
+      },
+      "type": "text",
+      "default": "https://bbs.dalao.me",
+      "placeholder": { "zh-CN": "https://bbs.dalao.me", "en-US": "https://bbs.dalao.me" },
+      "required": true,
+      "groupId": "credentials",
+      "group": { "zh-CN": "OAuth2 客户端", "en-US": "OAuth2 client" }
+    },
+    {
+      "key": "client_id",
+      "label": { "zh-CN": "Client ID", "en-US": "Client ID" },
+      "description": {
+        "zh-CN": "站点上那个 OAuth 应用的公开标识，形如 sfo_client_…。不是密钥。",
+        "en-US": "Public identifier of the OAuth app on the site, shaped like sfo_client_…. Not a secret."
+      },
+      "type": "text",
+      "default": "",
+      "placeholder": { "zh-CN": "sfo_client_xxxxxxxx", "en-US": "sfo_client_xxxxxxxx" },
+      "required": true,
+      "groupId": "credentials",
+      "group": { "zh-CN": "OAuth2 客户端", "en-US": "OAuth2 client" }
+    },
+    {
+      "key": "client_secret",
+      "label": { "zh-CN": "Client Secret", "en-US": "Client Secret" },
+      "description": {
+        "zh-CN": "OAuth 应用的密钥，由 SecretStore 保管。留空表示保留已保存的密钥；只有轮换密钥时才需要重新填写。",
+        "en-US": "Secret of the OAuth app, stored in SecretStore. Leave blank to keep the saved secret; fill it only when rotating the secret."
+      },
+      "type": "secret",
+      "default": "",
+      "placeholder": { "zh-CN": "sfos_…", "en-US": "sfos_…" },
+      "groupId": "credentials",
+      "group": { "zh-CN": "OAuth2 客户端", "en-US": "OAuth2 client" }
+    }
+  ],
+  "actions": []
+}

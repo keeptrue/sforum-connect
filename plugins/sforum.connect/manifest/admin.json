@@ -1,0 +1,11 @@
+{
+  "entry": "/settings",
+  "pages": [
+    {
+      "path": "/settings",
+      "label": "SForum Connect Settings",
+      "view": "settings",
+      "menu": false
+    }
+  ]
+}

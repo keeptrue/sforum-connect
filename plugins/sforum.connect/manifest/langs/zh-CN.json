@@ -1,0 +1,11 @@
+{
+  "name": "SForum 账号登录",
+  "description": "用 SForum 站点账号登录本站。Host 拥有账户、回调状态、PKCE 与会话权威；本插件只验证远端身份，不接触密码、不保存令牌。",
+  "author": { "name": "SForum" },
+  "authProvider": {
+    "sforum.connect.auth": {
+      "label": "SForum",
+      "continueWith": "使用 SForum 继续"
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "author": {
+    "name": "SForum",
+    "url": "https://github.com/keeptrue/sforum"
+  },
+  "backend": {
+    "digest": "16adf115fecab1556b6d82828f4daa459adf9f6e0b29b4b83d1b77271331aa64",
+    "entry": "backend/plugin",
+    "hostApiVersion": "sforum.host@2",
+    "protocolVersion": 2,
+    "rpc": "hashicorp-go-plugin"
+  },
+  "capabilities": [
+    "settings.own",
+    "net.outbound"
+  ],
+  "description": "Sign in to this SForum site with a SForum account. Host owns accounts, callback state, PKCE, and sessions; this adapter only proves the remote identity.",
+  "id": "sforum.connect",
+  "identity": {
+    "contractVersion": "sforum.connect.identity@1",
+    "providers": [
+      {
+        "contractVersion": "sforum.connect.auth@1",
+        "handler": "sforum.connect.identity",
+        "icon": "i-tabler-message-circle-2",
+        "id": "sforum.connect.auth",
+        "kind": "auth",
+        "label": {
+          "en-US": "SForum",
+          "zh-CN": "SForum"
+        },
+        "operations": [
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/start.input.json",
+            "name": "registration.start",
+            "outputSchema": "schemas/start.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/complete.input.json",
+            "name": "registration.complete",
+            "outputSchema": "schemas/auth.complete.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/start.input.json",
+            "name": "login.start",
+            "outputSchema": "schemas/start.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/complete.input.json",
+            "name": "login.complete",
+            "outputSchema": "schemas/auth.complete.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/start.input.json",
+            "name": "link.start",
+            "outputSchema": "schemas/start.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/complete.input.json",
+            "name": "link.complete",
+            "outputSchema": "schemas/auth.complete.output.json",
+            "timeoutMs": 5000
+          },
+          {
+            "failurePolicy": "fail_closed",
+            "inputSchema": "schemas/probe.input.json",
+            "name": "provider.probe",
+            "outputSchema": "schemas/probe.output.json",
+            "timeoutMs": 3000
+          }
+        ],
+        "priority": 100
+      }
+    ]
+  },
+  "includes": {
+    "admin": "manifest/admin.json",
+    "langs": "manifest/langs",
+    "settings": "manifest/settings.json"
+  },
+  "lifecycle": {
+    "contractVersion": "sforum.connect.lifecycle@1",
+    "disable": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.disable",
+      "plan": "lifecycle.disable.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    },
+    "enable": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.enable",
+      "plan": "lifecycle.enable.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    },
+    "install": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.install",
+      "plan": "lifecycle.install.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    },
+    "rollback": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.rollback",
+      "plan": "lifecycle.rollback.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    },
+    "uninstall": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.uninstall",
+      "plan": "lifecycle.uninstall.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    },
+    "upgrade": {
+      "checkpointSchema": "sforum.connect.lifecycle.checkpoint@1",
+      "execute": "lifecycle.upgrade",
+      "plan": "lifecycle.upgrade.plan",
+      "progressSchema": "sforum.connect.lifecycle.progress@1"
+    }
+  },
+  "manifestVersion": 3,
+  "name": "SForum Connect",
+  "packageFiles": [
+    {
+      "digest": "16adf115fecab1556b6d82828f4daa459adf9f6e0b29b4b83d1b77271331aa64",
+      "id": "sforum.connect.file.backend",
+      "kind": "executable",
+      "path": "backend/plugin"
+    },
+    {
+      "digest": "9bd9027d0b64a0c0c39583197cfab45b77d55a8a802609e9aacca18fd1e3cde1",
+      "id": "sforum.connect.schema.lifecycle.progress",
+      "kind": "schema",
+      "path": "schemas/lifecycle.progress.json",
+      "version": "1"
+    },
+    {
+      "digest": "9bd9027d0b64a0c0c39583197cfab45b77d55a8a802609e9aacca18fd1e3cde1",
+      "id": "sforum.connect.schema.lifecycle.checkpoint",
+      "kind": "schema",
+      "path": "schemas/lifecycle.checkpoint.json",
+      "version": "1"
+    },
+    {
+      "digest": "e050111f11272b97d0340e1756f9d03a1f3f7d0bfecf914a2fb14deee8750676",
+      "id": "sforum.connect.schema.start.input",
+      "kind": "schema",
+      "path": "schemas/start.input.json",
+      "version": "1"
+    },
+    {
+      "digest": "5f25e9910d79859a2b412ed3b2925f42d64a27b4649726f7f958f90055fad2a0",
+      "id": "sforum.connect.schema.start.output",
+      "kind": "schema",
+      "path": "schemas/start.output.json",
+      "version": "1"
+    },
+    {
+      "digest": "d64392bc7a693b6573c1442cce23ba4345eb0bca2b30958d1abfbfa1f79d5eb5",
+      "id": "sforum.connect.schema.complete.input",
+      "kind": "schema",
+      "path": "schemas/complete.input.json",
+      "version": "1"
+    },
+    {
+      "digest": "065904c8baca045a562399fbfe99bbb2e6192b4b3ed98236d6678b1dde9c12a2",
+      "id": "sforum.connect.schema.auth.complete.output",
+      "kind": "schema",
+      "path": "schemas/auth.complete.output.json",
+      "version": "1"
+    },
+    {
+      "digest": "c104cf368d17c24cc0eccddadf5bed01149e7243f144a81e756a743e85307324",
+      "id": "sforum.connect.schema.probe.input",
+      "kind": "schema",
+      "path": "schemas/probe.input.json",
+      "version": "1"
+    },
+    {
+      "digest": "ec8213a0d6845edea3a465e1d05c55c1e3324e3b100a1982a40298deae62b4d7",
+      "id": "sforum.connect.schema.probe.output",
+      "kind": "schema",
+      "path": "schemas/probe.output.json",
+      "version": "1"
+    }
+  ],
+  "sforumVersion": ">=3.0.0",
+  "type": "plugin",
+  "url": "https://github.com/keeptrue/sforum-connect",
+  "version": "1.0.0"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "SForum Connect",
+  "description": "Sign in to this site with a SForum account. Host owns accounts, callback state, PKCE, and sessions; this adapter only proves the remote identity and never touches passwords or stores tokens.",
+  "author": { "name": "SForum" },
+  "authProvider": {
+    "sforum.connect.auth": {
+      "label": "SForum",
+      "continueWith": "Continue with SForum"
+    }
+  }
+}
